@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.chahar.hibernate.poc2">
+    <class name="Group" table="mygrouptable">
+        
+        <id name="id" unsaved-value="0">
+            <generator class="increment" />
+        </id>
+        
+        <array name="stories" cascade="all">
+	        <key column="parent_id"/>
+	        <index column="idx"/>
+        	<one-to-many class="Story"/>
+        </array>
+        
+        <property name="name" type="string"/>
+    </class>
+
+    <class name="Story" table="story">
+        
+        <id name="id" unsaved-value="0">
+            <generator class="increment" />
+        </id>
+        
+        <property name="info"/>
+    </class>
+
+</hibernate-mapping>
