@@ -15,11 +15,21 @@
         	<one-to-many class="Story"/>
         </array>
         
-        <property name="name" type="string"/>
+        <list name="list_stories" cascade="all">  
+			<key column="parent_id"></key>  
+			<list-index column="idx"/> 
+			<one-to-many class="Story"/> 
+		</list>
+		
+		 <set name="set_Stories" cascade="all">  
+			 <key column="parent_id"></key>
+			<one-to-many class="Story"/>  
+		</set>
+
+		<property name="name" type="string"/>
     </class>
 
     <class name="Story" table="story">
-        
         <id name="id" unsaved-value="0">
             <generator class="increment" />
         </id>
@@ -28,3 +38,15 @@
     </class>
 
 </hibernate-mapping>
+
+
+ <!-- <set name="stories1" table="story">  
+          <key column="parent_id"></key>  
+          <element column="set_story" type="string"></element>  
+          </set>   -->
+          
+<!-- <list name="stories2" table="story">  
+			<key column="parent_id"></key>  
+			<index column="type"></index>  
+			<element column="list_story" type="string"></element>  
+		</list> -->
